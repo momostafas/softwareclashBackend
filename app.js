@@ -1,12 +1,21 @@
-import express from 'express';
-import db from './db/db';
-import schedule from './db/schedule'
-import bodyParser from 'body-parser';
-import courses from './db/courses';
-import students from './db/students';
-import auth from './db/auth';
+const express = require("express");
+const db = require("./db/db");
+const schedule = require("./db/schedule");
+const bodyParser = require("body-parser");
+const students = require("./db/students");
+const auth = require("./db/auth");
+const cors = require("cors");
+
 // Set up the express app
+
+var corsOptions = {
+  origin: "*"
+};
+
+
 const app = express();
+app.use(cors(corsOptions));
+
 // get all schedule
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -21,7 +30,7 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

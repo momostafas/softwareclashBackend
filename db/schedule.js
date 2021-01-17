@@ -402,4 +402,4 @@ const schedule = [
 ]
 
 
-export default schedule;
+module.exports = schedule;
